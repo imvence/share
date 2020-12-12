@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.imvence.myapp.ui.home.HomeFragment"
+        android:label="@string/tabbar_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_friends"
+        android:name="com.imvence.myapp.ui.friends.FriendsFragment"
+        android:label="@string/tabbar_friends"
+        tools:layout="@layout/fragment_friends" />
+
+    <fragment
+        android:id="@+id/navigation_news"
+        android:name="com.imvence.myapp.ui.news.NewsFragment"
+        android:label="@string/tabbar_news"
+        tools:layout="@layout/fragment_news" />
+
+    <fragment
+        android:id="@+id/navigation_mine"
+        android:name="com.imvence.myapp.ui.mine.MineFragment"
+        android:label="@string/tabbar_mine"
+        tools:layout="@layout/fragment_mine" />
+</navigation>
