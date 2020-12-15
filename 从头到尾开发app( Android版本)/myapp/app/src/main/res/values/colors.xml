@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="status_background_color">#F9F9F9</color>
+
     <color name="tabbar_background_color">#EEEEEE</color>
     <color name="tabbar_on">#3F7Cf1</color>
     <color name="tabbar_off">#373737</color>
