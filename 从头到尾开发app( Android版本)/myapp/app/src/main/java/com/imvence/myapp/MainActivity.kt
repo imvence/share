@@ -3,16 +3,23 @@ package com.imvence.myapp
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var toolbar: Toolbar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        toolbar = findViewById(R.id.toolbar)
+
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         navView.itemIconTintList = null //去掉图标的默认背景色
 
@@ -23,11 +30,34 @@ class MainActivity : AppCompatActivity() {
                // R.id.navigation_home, R.id.navigation_friends, R.id.navigation_news, R.id.navigation_mine))
         //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
+        navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         this.changeStatusBarColor(true);
+
     }
+
+    //监听tabbar切换状态
+    private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        /*
+        val titleMap = mutableMapOf<Int, String>(
+
+            R.id.navigation_home to this.resources.getString(R.string.tabbar_home_title),
+            R.id.navigation_friends to this.resources.getString(R.string.tabbar_friends_title),
+            R.id.navigation_news to this.resources.getString(R.string.tabbar_news_title),
+            R.id.navigation_mine to this.resources.getString(R.string.tabbar_mine_title)
+
+        )
+
+        toolbar.title = titleMap[item.itemId]
+           */
+
+        toolbar.title = item.title
+
+        return@OnNavigationItemSelectedListener true
+
+    }
+
     //设置状态栏字体颜色
-    fun changeStatusBarColor(setDark: Boolean) {
+    private fun changeStatusBarColor(setDark: Boolean) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val decorView: View = window.decorView
             if (decorView != null) {
@@ -41,4 +71,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }

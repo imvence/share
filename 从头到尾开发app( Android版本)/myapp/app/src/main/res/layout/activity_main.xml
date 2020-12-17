@@ -13,7 +13,7 @@
         android:background="@color/status_background_color"
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/black"
-        app:title="@string/app_name" >
+        app:title="@string/tabbar_home" >
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

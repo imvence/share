@@ -8,4 +8,10 @@
     <string name="tabbar_friends">通讯录</string>
     <string name="tabbar_news">发现</string>
     <string name="tabbar_mine">我的</string>
+
+    <string name="tabbar_home_title">首页标题</string>
+    <string name="tabbar_friends_title">通讯录标题</string>
+    <string name="tabbar_news_title">发现标题</string>
+    <string name="tabbar_mine_title">我的标题</string>
+
 </resources>
