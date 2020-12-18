@@ -33,22 +33,31 @@ class MainActivity : AppCompatActivity() {
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         this.changeStatusBarColor(true);
 
+        toolbar.inflateMenu(R.menu.home_friends_menu)
     }
 
     //监听tabbar切换状态
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         /*
         val titleMap = mutableMapOf<Int, String>(
-
             R.id.navigation_home to this.resources.getString(R.string.tabbar_home_title),
             R.id.navigation_friends to this.resources.getString(R.string.tabbar_friends_title),
             R.id.navigation_news to this.resources.getString(R.string.tabbar_news_title),
             R.id.navigation_mine to this.resources.getString(R.string.tabbar_mine_title)
+        )
+        */
 
+        //toolbar.title = titleMap[item.itemId]
+
+        val menuMap = mutableMapOf<Int, Int>(
+                R.id.navigation_home to R.menu.home_friends_menu,
+                R.id.navigation_friends to R.menu.home_friends_menu,
+                R.id.navigation_news to R.menu.news_mine_menu,
+                R.id.navigation_mine to R.menu.news_mine_menu
         )
 
-        toolbar.title = titleMap[item.itemId]
-           */
+        toolbar.menu?.clear()
+        menuMap[item.itemId]?.let { toolbar.inflateMenu(it) }
 
         toolbar.title = item.title
 

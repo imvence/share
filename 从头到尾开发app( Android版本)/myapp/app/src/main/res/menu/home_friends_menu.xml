@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/toolbar_search"
+        android:icon="@drawable/ic_search"
+        android:title="toolbar_search"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/toolbar_add"
+        android:icon="@drawable/ic_round_add"
+        android:title="toolbar_add"
+        app:showAsAction="ifRoom"
+        />
+</menu>
