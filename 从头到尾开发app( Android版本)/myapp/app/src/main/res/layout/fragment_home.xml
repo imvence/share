@@ -4,8 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize"
+    android:paddingBottom="?attr/actionBarSize"
     android:id="@+id/HomeFragment"
     tools:context=".ui.home.HomeFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/messageContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

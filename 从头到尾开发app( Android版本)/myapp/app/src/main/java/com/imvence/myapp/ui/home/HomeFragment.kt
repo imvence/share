@@ -10,10 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.imvence.myapp.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
+    private val msgList: MutableList<MsgItem> = ArrayList() //列表内容容器
+    private var msgAdapter: RecyclerView.Adapter<*>? = null
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -29,10 +33,37 @@ class HomeFragment : Fragment() {
         //    textView.text = it
         //})
 
-        val contentView: ConstraintLayout = root.findViewById(R.id.HomeFragment)
+        //val contentView: ConstraintLayout = root.findViewById(R.id.HomeFragment)
 
-        contentView.addView(inflater.inflate(R.layout.msg_item, container, false))
+        //contentView.addView(inflater.inflate(R.layout.msg_item, container, false))
+
+        val messageContent: RecyclerView = root.findViewById(R.id.messageContent)
+        messageContent.layoutManager = LinearLayoutManager(root.context)
+
+        msgAdapter = MsgAdapter(msgList, root.context)
+
+        messageContent.adapter = msgAdapter
+
+        this.initRequest()  //假设从这里开始加载数据
 
         return root
+    }
+
+    private fun initRequest(){
+        var start = 0
+        var end   = 10
+
+        for (i in start..end){
+            msgList.add(i, MsgItem(
+                    i.toString(),
+                    "关注程序阿源，带你从头到尾开发APP",
+                    "$i 小时前",
+                    "程序阿源$i",
+                    ""
+            ))
+        }
+
+        msgAdapter?.notifyDataSetChanged()
+
     }
 }
