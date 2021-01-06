@@ -54,12 +54,14 @@ class HomeFragment : Fragment() {
         var end   = 10
 
         for (i in start..end){
+            var rand = (0..10).random()
+
             msgList.add(i, MsgItem(
                     i.toString(),
                     "关注程序阿源，带你从头到尾开发APP",
                     "$i 小时前",
                     "程序阿源$i",
-                    ""
+                    "https://asm.api.qt750.com/Uploads/image/tt/$rand.jpg"
             ))
         }
 

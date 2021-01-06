@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -12,11 +14,12 @@
         android:paddingBottom="15dp"
         android:paddingTop="15dp"
         android:paddingLeft="15dp">
-        <ImageView
+
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/msg_avatar"
             android:layout_width="46dp"
             android:layout_height="46dp"
-            android:src="@drawable/avatar"
+            fresco:roundedCornerRadius="3dp"
             />
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

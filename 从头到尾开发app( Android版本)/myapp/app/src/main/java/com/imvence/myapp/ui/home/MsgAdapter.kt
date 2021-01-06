@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.facebook.drawee.backends.pipeline.Fresco
+import com.facebook.drawee.view.SimpleDraweeView
 import com.imvence.myapp.R
 
 class MsgAdapter(private val datas: List<MsgItem>, private val context: Context) :RecyclerView.Adapter<MsgAdapter.InnerHolder>() {
@@ -19,7 +21,7 @@ class MsgAdapter(private val datas: List<MsgItem>, private val context: Context)
     override fun getItemCount(): Int = datas.size
 
     class InnerHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val msg_avatar: ImageView = itemView.findViewById(R.id.msg_avatar)
+        val msg_avatar: SimpleDraweeView = itemView.findViewById(R.id.msg_avatar)
         val msg_nickname: TextView = itemView.findViewById(R.id.msg_nickname)
         val msg_day: TextView = itemView.findViewById(R.id.msg_day)
         val msg_content: TextView = itemView.findViewById(R.id.msg_content)
@@ -29,6 +31,7 @@ class MsgAdapter(private val datas: List<MsgItem>, private val context: Context)
         p0.msg_nickname.text = datas[p1].nickname
         p0.msg_day.text = datas[p1].day
         p0.msg_content.text = datas[p1].content
+        p0.msg_avatar.setImageURI(datas[p1].avatar)
     }
 
 }

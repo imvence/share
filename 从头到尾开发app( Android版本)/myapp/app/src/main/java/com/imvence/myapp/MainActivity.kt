@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.get
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.facebook.drawee.backends.pipeline.Fresco
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,6 +36,9 @@ class MainActivity : AppCompatActivity() {
         this.changeStatusBarColor(true);
 
         toolbar.inflateMenu(R.menu.home_friends_menu)
+
+
+        Fresco.initialize(this);
     }
 
     //监听tabbar切换状态
