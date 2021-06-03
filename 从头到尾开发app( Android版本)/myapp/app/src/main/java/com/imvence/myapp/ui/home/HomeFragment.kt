@@ -2,8 +2,10 @@ package com.imvence.myapp.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.ScaleGestureDetector
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -12,12 +14,15 @@ import androidx.lifecycle.ViewModelProvider
 import com.imvence.myapp.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private val msgList: MutableList<MsgItem> = ArrayList() //列表内容容器
     private var msgAdapter: RecyclerView.Adapter<*>? = null
+    private var page = 1   //设置当前是第几页
+    private lateinit var homeRefresh: SwipeRefreshLayout
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -44,14 +49,30 @@ class HomeFragment : Fragment() {
 
         messageContent.adapter = msgAdapter
 
+        homeRefresh = root.findViewById(R.id.msgRefresh)
+        homeRefresh.setOnRefreshListener {
+            this.page = 1
+            msgList.clear()
+            this.initRequest()
+        }
+
+        messageContent.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if(!messageContent.canScrollVertically(1)){
+                    page+=1
+                    initRequest()
+                }
+            }
+        })
+
         this.initRequest()  //假设从这里开始加载数据
 
         return root
     }
 
     private fun initRequest(){
-        var start = 0
-        var end   = 10
+        var start = (page-1)*10
+        var end   = page*10
 
         for (i in start..end){
             var rand = (0..10).random()
@@ -67,5 +88,8 @@ class HomeFragment : Fragment() {
 
         msgAdapter?.notifyDataSetChanged()
 
+        if(homeRefresh.isRefreshing){
+            homeRefresh.isRefreshing = false
+        }
     }
 }
