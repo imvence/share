@@ -21,8 +21,8 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private val msgList: MutableList<MsgItem> = ArrayList() //列表内容容器
     private var msgAdapter: RecyclerView.Adapter<*>? = null
-    private var page = 1   //设置当前是第几页
-    private lateinit var homeRefresh: SwipeRefreshLayout
+    private lateinit var homeRefresh:SwipeRefreshLayout
+    private var page = 1
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -52,14 +52,15 @@ class HomeFragment : Fragment() {
         homeRefresh = root.findViewById(R.id.msgRefresh)
         homeRefresh.setOnRefreshListener {
             this.page = 1
-            msgList.clear()
+            this.msgList.clear()
             this.initRequest()
+
         }
 
         messageContent.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                if(!messageContent.canScrollVertically(1)){
-                    page+=1
+                if(!messageContent.canScrollVertically(0)){
+                    page += 1
                     initRequest()
                 }
             }
