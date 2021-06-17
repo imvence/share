@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ripple android:color="@color/tabbar_background_color"
+<ripple android:color="@color/status_background_color"
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:targetApi="lollipop"
     xmlns:tools="http://schemas.android.com/tools">

@@ -15,6 +15,7 @@ import com.imvence.myapp.R
 
 class FriendsFragment : Fragment() {
     var friendsResult:FriendsData?=null
+    var dataAdapter:RecyclerView.Adapter<*>?=null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +29,8 @@ class FriendsFragment : Fragment() {
         friendsContent.layoutManager = LinearLayoutManager(context)
 
         this.initRequest()
+        dataAdapter = FriendsAdapter(friendsResult!!, root.context)
+        friendsContent.adapter = dataAdapter
 
         return root
     }
@@ -38,6 +41,7 @@ class FriendsFragment : Fragment() {
 
         friendsResult = Gson().fromJson(friendsJson, FriendsData::class.java)
 
-        println(friendsResult!!.datas[0].friends)
+        //println(friendsResult!!.datas[0].friends)
+        dataAdapter?.notifyDataSetChanged()
     }
 }
