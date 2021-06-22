@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.View
 
 class FriendsQuickIndex(context: Context, attrs: AttributeSet, defStyleAttr:Int): View(context, attrs, defStyleAttr) {
@@ -13,6 +14,8 @@ class FriendsQuickIndex(context: Context, attrs: AttributeSet, defStyleAttr:Int)
     private var groups = mutableMapOf<Int, String>()
     private var cellWidth = 0
     private var cellHeight = 0
+    private var indexChangeListener:OnIndexChangeListener?=null
+    private var curIndex = -1
 
     constructor(context: Context, attrs: AttributeSet):this(context,attrs,0){}
 
@@ -28,6 +31,24 @@ class FriendsQuickIndex(context: Context, attrs: AttributeSet, defStyleAttr:Int)
         }
     }
 
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        if(event!!.action == MotionEvent.ACTION_DOWN){
+            val y = event.y.toInt()
+            val index = y/cellHeight
+
+            if(index<groups.size){
+                if(index != curIndex){
+                    curIndex = index
+                    if(indexChangeListener!=null){
+                        indexChangeListener!!.onIndexChange(groups[curIndex])
+                    }
+                }
+            }
+        }
+
+        return super.onTouchEvent(event)
+    }
+
     init{
         paint.isAntiAlias = true
         paint.textSize = 26F
@@ -38,5 +59,13 @@ class FriendsQuickIndex(context: Context, attrs: AttributeSet, defStyleAttr:Int)
         cellWidth = measuredWidth
         cellHeight = measuredHeight/datas.size
         draw(scanvas)
+    }
+
+    interface OnIndexChangeListener{
+        fun onIndexChange(group:String?)
+    }
+
+    fun setOnIndexChangeListener(changeListener:OnIndexChangeListener){
+        indexChangeListener = changeListener
     }
 }

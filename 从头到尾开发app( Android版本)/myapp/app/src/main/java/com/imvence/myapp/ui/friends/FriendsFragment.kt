@@ -18,6 +18,7 @@ class FriendsFragment : Fragment() {
     var friendsResult:FriendsData?=null
     var dataAdapter:RecyclerView.Adapter<*>?=null
     lateinit var root:View
+    lateinit var quickIndexView:FriendsQuickIndex
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +30,23 @@ class FriendsFragment : Fragment() {
 
         var friendsContent:RecyclerView = root.findViewById(R.id.friendsContent)
         friendsContent.layoutManager = LinearLayoutManager(context)
+
+        quickIndexView = root.findViewById<FriendsQuickIndex>(R.id.quickIndexView)
+        quickIndexView.setOnIndexChangeListener(object: FriendsQuickIndex.OnIndexChangeListener{
+            override fun onIndexChange(group: String?) {
+                var count = 0
+
+                for(i in 0 until friendsResult!!.datas.size){
+                    if(group == friendsResult!!.datas[i].groupIndex){
+                        (friendsContent.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(count+1, 0)
+
+                        break
+                    }else{
+                        count+= 1+friendsResult!!.datas[i].friends.size
+                    }
+                }
+            }
+        })
 
         this.initRequest()
         dataAdapter = FriendsAdapter(friendsResult!!, root.context)
@@ -48,7 +66,7 @@ class FriendsFragment : Fragment() {
             groups[i] = friendsResult!!.datas[i].groupIndex
         }
 
-        val quickIndexView = root.findViewById<FriendsQuickIndex>(R.id.quickIndexView)
+        //val quickIndexView = root.findViewById<FriendsQuickIndex>(R.id.quickIndexView)
 
         Handler().postDelayed({
             quickIndexView.redraw(groups)
