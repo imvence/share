@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:top="-0.5dp">
+        <shape>
+            <solid android:color="@color/white" />
+
+            <stroke
+                android:width="0.5dp"
+                android:color="@color/tabbar_background_color" />
+        </shape>
+    </item>
+</layer-list>
