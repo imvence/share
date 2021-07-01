@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.imvence.myapp"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -49,6 +49,9 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    
+    implementation 'com.william:JTCameraView:2.0.0-beta'
+
 
     implementation 'com.facebook.fresco:fresco:0.12.0' 
     // 在 API < 14 上的机器支持 WebP 时，需要添加

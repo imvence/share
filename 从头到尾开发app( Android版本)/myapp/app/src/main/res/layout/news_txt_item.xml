@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="15dp"
+    android:orientation="vertical"
+    android:background="@drawable/linearlayout_water_selector"
+    android:clickable="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        >
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/news_avatar"
+            android:layout_height="38dp"
+            android:layout_width="38dp"
+            fresco:roundedCornerRadius="3dp"
+            />
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/news_nickname"
+                android:layout_height="22dp"
+                android:layout_width="match_parent"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+
+            <LinearLayout
+                android:id="@+id/news_main"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/news_txt"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:textSize="14dp"
+                    android:lineSpacingExtra="5dp"
+                    android:textColor="@color/msg_nickname"
+                    android:text="" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/news_addtime"
+                android:layout_height="20dp"
+                android:layout_width="match_parent"
+                android:textSize="12dp"
+                android:textColor="@color/msg_content"
+                android:text=""
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="0.5dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:background="@color/msg_split"
+        />
+</LinearLayout>
